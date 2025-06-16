@@ -1,5 +1,5 @@
 ## Welcome!
-Thanks for checking out my website!   www.brianyuen.io 
+Thanks for checking out my website!   www.BrianYuen.io 
 
 This is the source code. I built it myself with React, Next.js, tailwindcss
 
