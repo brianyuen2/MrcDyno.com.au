@@ -1,5 +1,7 @@
 import {HeaderGallery} from "./components/header-gallery";
 import { Metadata } from 'next'
+import { GoogleTagManager } from '@next/third-parties/google'
+
 export const metadata: Metadata = {
     title: 'Brian | Engineer & Maker',
     icons: {
@@ -11,7 +13,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-        <main >
+        <GoogleTagManager gtmId="GTM-MPLTMJ2G" />
+        <main>
         <HeaderGallery/>
       </main>
     </div>
