@@ -9,7 +9,7 @@ export const HeaderGallery = () => {
                    alt={"carBg"}
                    className={"overflow-clip min-h-[450px] object-cover"}/>
             <div className={"flex flex-col absolute inset-0 items-center justify-center font-sans text-[#F8F0E3]  bg-black/25"}>
-                <div className={`text-4xl md:text-6xl xl:text-9xl font-bold`}>
+                <div className={`text-5xl md:text-8xl xl:text-9xl font-bold`}>
                     {"Hey!"}
                 </div>
                 <div className={`text-2xl md:text-4xl xl:text-6xl 
