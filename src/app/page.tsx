@@ -1,6 +1,6 @@
 import {HeaderGallery} from "./components/header-gallery";
 import { Metadata } from 'next'
-import { GoogleTagManager } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
     title: 'Brian | Engineer & Maker',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-        <GoogleTagManager gtmId="GTM-MPLTMJ2G" />
+        <Analytics />
         <main>
         <HeaderGallery/>
       </main>
