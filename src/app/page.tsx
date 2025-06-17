@@ -1,6 +1,6 @@
 import {HeaderGallery} from "./components/header-gallery";
 import { Metadata } from 'next'
-import { Projects } from './components/projects'
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
     title: 'Brian | Engineer & Maker',
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-        <main >
+        <Analytics />
+        <main>
         <HeaderGallery/>
-            <Projects/>
       </main>
     </div>
   );
