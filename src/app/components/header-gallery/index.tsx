@@ -1,8 +1,14 @@
+"use client";
 import React from "react";
 
 import { Gallery } from "@/app/components/header-gallery/gallery";
 
 export const HeaderGallery = () => {
+  const scrolltoHash = function (element_id: string) {
+    const element = document.getElementById(element_id);
+    element?.scrollIntoView(true);
+  };
+
   return (
     <div className="relative">
       <Gallery />
@@ -23,6 +29,7 @@ export const HeaderGallery = () => {
           {"I'm Brian. Software Engineer & Maker."}
         </div>
         <button
+          onClick={() => scrolltoHash("projects")}
           className={`text-l md:text-xl xl:text-2xl 
                     px-2 pt-1 pb-2
                     mt-2 md:mt-5 xl:mt-7
@@ -31,9 +38,10 @@ export const HeaderGallery = () => {
                      transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
-          <a href={"#projects"}>{"Find out more"}</a>
+          {"Find out more"}
         </button>
         <button
+          onClick={() => scrolltoHash("projects")}
           className={`text-l md:text-xl xl:text-2xl 
                     px-2 pt-1 pb-2
                     mt-2 md:mt-4 
@@ -41,7 +49,7 @@ export const HeaderGallery = () => {
                     transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
-          <a href={"#projects"}>{"View projects"}</a>
+          {"View projects"}
         </button>
       </div>
     </div>
