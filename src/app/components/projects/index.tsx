@@ -6,6 +6,7 @@ import Image, { StaticImageData } from "next/image";
 export const Projects = () => {
   return (
     <div
+      id={"projects"}
       className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10
     pt-8 lg:pt-10 xl:pt-12
     px-8 lg:px-10 xl:px-12"
