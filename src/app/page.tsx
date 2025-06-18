@@ -1,7 +1,7 @@
-import { HeaderGallery } from "./components/header-gallery";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Projects } from "@/app/components/projects";
+import { HeaderGallery } from "@/app/components/header-gallery";
 
 export const metadata: Metadata = {
   title: "Brian | Engineer & Maker",
