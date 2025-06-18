@@ -32,7 +32,7 @@ export const HeaderGallery = () => {
                     mt-2 md:mt-5 xl:mt-7
                     mb-40 md:mb-30 lg:mb-35 2xl:mb-70 3xl:mb-130
                     border border-[#F8F0E3] rounded-lg
-                    hover:bg-white/20 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]
+                     transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
           <a href={"#projects"}>{"Find out more"}</a>
@@ -42,7 +42,7 @@ export const HeaderGallery = () => {
                     px-2 pt-1 pb-2
                     mt-2 md:mt-4 
                     border border-[#F8F0E3] rounded-lg
-                    hover:bg-white/20 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]
+                    transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
           <a href={"#projects"}>{"View projects"}</a>
