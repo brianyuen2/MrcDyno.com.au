@@ -1,15 +1,11 @@
 import React from "react";
-import Image from "next/image";
-import carBg from "../../assets/car-bg.jpg";
+
+import { Gallery } from "@/app/components/header-gallery/gallery";
 
 export const HeaderGallery = () => {
   return (
     <div className="relative">
-      <Image
-        src={carBg}
-        alt={"carBg"}
-        className={"overflow-clip min-h-[450px] object-cover"}
-      />
+      <Gallery />
       <div
         className={
           "flex flex-col absolute inset-0 items-center justify-center font-sans bg-black/25"
