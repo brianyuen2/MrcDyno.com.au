@@ -1,8 +1,8 @@
 import React from "react";
-import car from "./images/car.jpg";
-import bike from "./images/bike.jpg";
-import silvy from "./images/silvy.jpg";
-import website from "./images/website.png";
+import car from "@/app/components/projects/assets/car.jpg";
+import bike from "@/app/components/projects/assets/bike.jpg";
+import silvy from "@/app/components/projects/assets/silvy.jpg";
+import website from "@/app/components/projects/assets/website.png";
 import Image, { StaticImageData } from "next/image";
 
 export const Projects = () => {

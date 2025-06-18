@@ -12,7 +12,7 @@ interface GalleryProps {
 }
 
 export const Gallery = (props: GalleryProps) => {
-  const { autoPlayInterval = 6000, className } = props;
+  const { autoPlayInterval = 5000, className } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
