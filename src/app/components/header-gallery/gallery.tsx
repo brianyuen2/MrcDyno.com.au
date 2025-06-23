@@ -15,7 +15,7 @@ export const Gallery = (props: GalleryProps) => {
   //
   const images = [car1, bike1, car2];
 
-  const { autoPlayInterval = 5000, className } = props;
+  const { autoPlayInterval = 4000, className } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
