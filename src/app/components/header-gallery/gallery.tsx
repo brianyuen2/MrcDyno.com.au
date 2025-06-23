@@ -12,11 +12,13 @@ interface GalleryProps {
 }
 
 export const Gallery = (props: GalleryProps) => {
+  //
+  const images = [car1, bike1, car2];
+
   const { autoPlayInterval = 5000, className } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const images = [car1, bike1, car2];
   useEffect(() => {
     const interval = setInterval(() => {
       handleImageChange((currentIndex + 1) % images.length);
