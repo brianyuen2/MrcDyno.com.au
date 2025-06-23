@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import emailIcon from "./assets/gmail.png";
-import instaIcon from "./assets/insta.jpg";
 export const Footer = () => {
   const scrolltoHash = function (element_id: string) {
     const element = document.getElementById(element_id);
