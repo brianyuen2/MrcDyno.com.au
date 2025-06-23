@@ -32,7 +32,7 @@ export const Footer = () => {
         className={`text-lg md:text-lg
                     px-2 py-1
                     mt-6
-                    border border-[#F8F0E3] rounded-lg
+                    border border-[#F8F0E3] rounded-lg cursor-pointer
                     transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
       >

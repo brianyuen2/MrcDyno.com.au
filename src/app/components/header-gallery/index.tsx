@@ -34,7 +34,7 @@ export const HeaderGallery = () => {
                     px-2 pt-1 pb-2
                     mt-2 md:mt-5 xl:mt-7
                     mb-40 md:mb-30 lg:mb-35 2xl:mb-70 3xl:mb-130
-                    border border-[#F8F0E3] rounded-lg
+                    border border-[#F8F0E3] rounded-lg cursor-pointer
                      transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
@@ -45,7 +45,7 @@ export const HeaderGallery = () => {
           className={`text-lg md:text-xl xl:text-2xl 
                     px-2 pt-1 pb-2
                     mt-2 md:mt-4 
-                    border border-[#F8F0E3] rounded-lg
+                    border border-[#F8F0E3] rounded-lg cursor-pointer
                     transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
         >
