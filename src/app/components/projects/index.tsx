@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import car from "@/app/components/projects/assets/car.jpg";
 import bike from "@/app/components/projects/assets/bike.jpg";
 import silvy from "@/app/components/projects/assets/silvy.jpg";
@@ -13,28 +14,34 @@ export const Projects = () => {
     pt-8 lg:pt-10 xl:pt-12
     px-8 lg:px-10 xl:px-12"
     >
-      <Card projectName={"S15"} filename={car} />
-      <Card projectName={"WEBDEV"} filename={website} />
-      <Card projectName={"ZX6R"} filename={bike} />
-      <Card projectName={"SILVY"} filename={silvy} />
+      <Card projectName={"S15"} filename={car} slug="s15" />
+      <Card projectName={"WEBDEV"} filename={website} slug="webdev" />
+      <Card projectName={"ZX6R"} filename={bike} slug="zx6r" />
+      <Card projectName={"SILVY"} filename={silvy} slug="silvy" />
     </div>
   );
 };
 
-const Card = (props: { projectName: string; filename: StaticImageData }) => {
-  const { filename, projectName } = props;
+const Card = (props: {
+  projectName: string;
+  filename: StaticImageData;
+  slug: string;
+}) => {
+  const { filename, projectName, slug } = props;
   return (
-    <div
-      className={`relative rounded-xl overflow-hidden transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-xl cursor-pointer group`}
-    >
-      <Image src={filename} alt={"Project image"} />
-      <div className="absolute inset-0  group-hover:bg-white/15 transition-all duration-200"></div>
+    <Link href={`/project/${slug}`}>
       <div
-        className={`flex absolute inset-0 bg-black/25 justify-center items-center font-bold 
-        text-2xl :text-4xl xl:text-6xl`}
+        className={`relative rounded-xl overflow-hidden transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-xl cursor-pointer group`}
       >
-        {"PROJECT: " + projectName}
+        <Image src={filename} alt={"Project image"} />
+        <div className="absolute inset-0  group-hover:bg-white/15 transition-all duration-200"></div>
+        <div
+          className={`flex absolute inset-0 bg-black/25 justify-center items-center font-bold 
+          text-2xl :text-4xl xl:text-6xl`}
+        >
+          {"PROJECT: " + projectName}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
