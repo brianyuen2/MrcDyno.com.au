@@ -6,9 +6,8 @@ const desc1 =
   "I built this website myself to showcase my software skills and some of my passions.";
 const desc2 =
   "I've been working as a software engineer for over 5 years but I'm really just an engineer. I love to " +
-  "build all sorts of things ranging from this website to my cars";
-const desc3 =
-  "If you want your own custom website for any purpose feel free to message me!";
+  "build all sorts of things ranging from this website to my cars.";
+const desc3 = "If you want your own custom website feel free to message me!";
 
 export const About = () => (
   <div

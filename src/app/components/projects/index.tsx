@@ -14,10 +14,10 @@ export const Projects = () => {
     pt-8 lg:pt-10 xl:pt-12
     px-8 lg:px-10 xl:px-12"
     >
-      <Card projectName={"S15"} filename={car} slug="s15" />
-      <Card projectName={"WEBDEV"} filename={website} slug="webdev" />
-      <Card projectName={"ZX6R"} filename={bike} slug="zx6r" />
-      <Card projectName={"SILVY"} filename={silvy} slug="silvy" />
+      <Card projectName={"S15"} filename={car} slug="S15" />
+      <Card projectName={"WEBDEV"} filename={website} slug="Webdev" />
+      <Card projectName={"ZX6R"} filename={bike} slug="Zx6r" />
+      <Card projectName={"SILVY"} filename={silvy} slug="Silvy" />
     </div>
   );
 };
