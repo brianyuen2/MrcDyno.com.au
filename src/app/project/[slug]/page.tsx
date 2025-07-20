@@ -74,7 +74,7 @@ const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
         {desc.map((paragraph, index) => (
           <p
             key={index}
-            className="text-lg md:text-xl 3xl:text-3xl mb-4 last:mb-0 pt-5"
+            className="text-lg md:text-xl 3xl:text-3xl mb-4 last:mb-0 pt-5 text-justify"
           >
             {paragraph}
           </p>

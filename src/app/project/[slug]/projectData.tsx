@@ -29,7 +29,7 @@ export const projectsData: Record<string, ProjectData> = {
     desc: [
       "I built this website myself to explore the possibilities of beautiful web design and showcase my passions.",
       "I used Next.js, tailwindcss, and Typescript to build this.",
-      "It contains features including analytics and mobile responsive design, I plan to continually build this in my spare time",
+      "It contains features including analytics and mobile responsive design, I plan to continually build this in my spare time.",
       "If you want to build something cool together feel free to reach out!",
     ],
     imgs: [website.src, website2.src],
