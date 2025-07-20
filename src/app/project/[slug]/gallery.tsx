@@ -13,15 +13,18 @@ export const Gallery = (props: GalleryProps) => {
   const { autoPlayInterval = 4000, className } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const images = props.images;
 
   useEffect(() => {
+    if (isHovered) return; // Don't auto-play when hovered
+    
     const interval = setInterval(() => {
       handleImageChange((currentIndex + 1) % images.length);
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlayInterval, images.length, currentIndex]);
+  }, [autoPlayInterval, images.length, currentIndex, isHovered]);
 
   const handleImageChange = (newIndex: number) => {
     setIsTransitioning(true);
@@ -37,8 +40,21 @@ export const Gallery = (props: GalleryProps) => {
     handleImageChange(index);
   };
 
+  const goToPrevious = () => {
+    const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    handleImageChange(prevIndex);
+  };
+
+  const goToNext = () => {
+    handleImageChange((currentIndex + 1) % images.length);
+  };
+
   return (
-    <div className={`relative  ${className} object-fit`}>
+    <div 
+      className={`relative  ${className} object-fit`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Main Image */}
       <div>
         <Image
@@ -52,6 +68,27 @@ export const Gallery = (props: GalleryProps) => {
           priority
         />
       </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 cursor-pointer"
+        aria-label="Previous image"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      
+      <button
+        onClick={goToNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 cursor-pointer"
+        aria-label="Next image"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
 
       {/* Navigation Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">

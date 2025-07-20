@@ -1,8 +1,10 @@
 import car from "@/app/components/projects/assets/car.jpg";
 import car2 from "@/app/components/projects/assets/car2.jpg";
 import bike from "@/app/components/projects/assets/bike.jpg";
+import bike2 from "@/app/components/projects/assets/bike2.jpg";
 import silvy from "@/app/components/projects/assets/silvy.jpg";
 import website from "@/app/components/projects/assets/website.png";
+import website2 from "@/app/components/projects/assets/website2.png";
 
 export type ProjectData = {
   id: string;
@@ -19,18 +21,12 @@ export const projectsData: Record<string, ProjectData> = {
   Webdev: {
     id: "WEBDEV",
     desc: "Full-stack web development projects showcasing modern technologies, responsive design, and user experience optimization. Built with React, Next.js, and TypeScript.",
-    imgs: [
-      website.src,
-      // Add more website images here as needed
-    ],
+    imgs: [website.src, website2.src],
   },
   Zx6r: {
     id: "ZX6R",
     desc: "Kawasaki ZX6R motorcycle project featuring performance modifications, custom parts, and track-focused upgrades. A showcase of mechanical engineering and motorsport passion.",
-    imgs: [
-      bike.src,
-      // Add more bike images here as needed
-    ],
+    imgs: [bike.src, bike2.src],
   },
   Silvy: {
     id: "SILVY",
