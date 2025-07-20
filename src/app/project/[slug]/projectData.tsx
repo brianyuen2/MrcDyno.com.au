@@ -38,6 +38,6 @@ export const projectsData: Record<string, ProjectData> = {
   },
 };
 
-export const getProjectData = (slug: string): ProjectData | null => {
-  return projectsData[slug] || null;
+export const getProjectData = (slug: string): ProjectData => {
+  return projectsData[slug];
 };

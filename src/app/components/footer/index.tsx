@@ -5,8 +5,13 @@ import Image from "next/image";
 import emailIcon from "./assets/gmail.png";
 export const Footer = () => {
   const scrolltoHash = function (element_id: string) {
-    const element = document.getElementById(element_id);
-    element?.scrollIntoView(true);
+    // Check if we're on home page
+    if (window.location.pathname === "/") {
+      const element = document.getElementById(element_id);
+      element?.scrollIntoView(true);
+    } else {
+      window.location.href = "/";
+    }
   };
 
   return (
@@ -36,7 +41,7 @@ export const Footer = () => {
                     transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
                     `}
       >
-        {"Back to top"}
+        {"Back to home"}
       </button>
     </div>
   );

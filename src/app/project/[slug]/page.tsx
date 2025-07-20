@@ -35,12 +35,13 @@ const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
     <div className={`flex flex-col items-center justify-center`}>
       <div
         className={`grid grid-cols-3 items-center w-full 
-      3xl:pt-30`}
+      pt-8 3xl:pt-30
+      pb-8`}
       >
-        <div className="flex justify-end pl-8">
+        <div className="flex justify-end pr-6">
           <Link href="/#projects">
             <button
-              className={`text-lg md:text-xl xl:text-2xl 
+              className={`text-md md:text-2xl xl:text-2xl 
                       px-2 pt-1 pb-2
                       border border-[#F8F0E3] rounded-lg cursor-pointer
                        transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
@@ -52,21 +53,23 @@ const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
         </div>
         <div className="flex justify-center">
           <h1
-            className="3xl:text-6xl
-          font-bold mb-4"
+            className="text-xl md:text-3xl 3xl:text-6xl
+          font-bold"
           >
             {`Project ${id}`}
           </h1>
         </div>
         <div></div>
       </div>
-      <Gallery images={imgs} />
-      <p
-        className="text-lg mb-6
-      3xl:pt-15"
+      <Gallery images={imgs} className={`mb-10`} />
+      <div
+        className={`flex flex-col items-center justify-center
+         max-w-[600px] 3xl:max-w-[1000px]
+         
+        px-10`}
       >
-        {desc}
-      </p>
+        <p className="text-lg md:text-xl 3xl:text-3xl">{desc}</p>
+      </div>
     </div>
   );
 };
@@ -76,20 +79,6 @@ export default async function ProjectPage({ params }: PageProps) {
 
   // Get project data from the mapping
   const projectData = getProjectData(slug);
-
-  // If project not found, show 404 or fallback
-  if (!projectData) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-        <Link href="/#projects">
-          <button className="px-4 py-2 border border-[#F8F0E3] rounded-lg">
-            Back to Projects
-          </button>
-        </Link>
-      </div>
-    );
-  }
 
   return <ProjectPageComponent {...projectData} />;
 }
