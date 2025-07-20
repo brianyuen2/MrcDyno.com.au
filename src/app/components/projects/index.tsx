@@ -3,7 +3,7 @@ import Link from "next/link";
 import car from "@/app/components/projects/assets/car.jpg";
 import bike from "@/app/components/projects/assets/bike.jpg";
 import silvy from "@/app/components/projects/assets/silvy.jpg";
-import website from "@/app/components/projects/assets/website.png";
+import website from "@/app/components/projects/assets/website.jpg";
 import Image, { StaticImageData } from "next/image";
 
 export const Projects = () => {

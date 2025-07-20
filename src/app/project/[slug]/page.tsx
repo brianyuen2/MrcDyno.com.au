@@ -23,7 +23,7 @@ export async function generateMetadata({
 type ProjectPageProps = {
   id: string;
   imgs: string[];
-  desc: string;
+  desc: string[];
 };
 
 type PageProps = {
@@ -32,10 +32,13 @@ type PageProps = {
 
 const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
   return (
-    <div className={`flex flex-col items-center justify-center`}>
+    <div
+      className={`flex flex-col items-center justify-center
+    pt-8 3xl:pt-30`}
+    >
       <div
         className={`grid grid-cols-3 items-center w-full 
-      pt-8 3xl:pt-30
+      
       pb-8`}
       >
         <div className="flex justify-end pr-6">
@@ -61,14 +64,21 @@ const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
         </div>
         <div></div>
       </div>
-      <Gallery images={imgs} className={`mb-10`} />
+      <Gallery images={imgs} />
       <div
         className={`flex flex-col items-center justify-center
          max-w-[600px] 3xl:max-w-[1000px]
-         
-        px-10`}
+         py-10 md:py-20
+         px-10`}
       >
-        <p className="text-lg md:text-xl 3xl:text-3xl">{desc}</p>
+        {desc.map((paragraph, index) => (
+          <p
+            key={index}
+            className="text-lg md:text-xl 3xl:text-3xl mb-4 last:mb-0 pt-5"
+          >
+            {paragraph}
+          </p>
+        ))}
       </div>
     </div>
   );
