@@ -1,8 +1,8 @@
-import Image, { ImageProps, StaticImageData } from "next/image";
 import { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
 import { getProjectData } from "./projectData";
+import { Gallery } from "./gallery";
 
 // Generate dynamic metadata for each project page
 export async function generateMetadata({
@@ -22,7 +22,7 @@ export async function generateMetadata({
 
 type ProjectPageProps = {
   id: string;
-  imgs: ImageProps[];
+  imgs: string[];
   desc: string;
 };
 
@@ -60,19 +60,7 @@ const ProjectPageComponent = ({ id, desc, imgs }: ProjectPageProps) => {
         </div>
         <div></div>
       </div>
-
-      <div
-        className={`flex flex-col items-center
-      3xl:pt-15`}
-      >
-        {imgs.map((img, index) => (
-          <div key={index} className="rounded-lg overflow-hidden">
-            <Image {...img} className="rounded-lg" />
-          </div>
-        ))}
-        {/*<Gallery images={imgs} />*/}
-        <div className={`pt-5 text-lg`}>{"More coming soon!"}</div>
-      </div>
+      <Gallery images={imgs} />
       <p
         className="text-lg mb-6
       3xl:pt-15"
