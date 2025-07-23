@@ -6,7 +6,7 @@ import { About } from "@/app/components/about";
 export const metadata: Metadata = {
   title: "Brian | Engineer & Maker",
   icons: {
-    icon: "/assets/icon.png",
+    icon: "/assets/icon.jpg",
   },
 };
 

@@ -15,7 +15,7 @@ export async function generateMetadata({
   return {
     title: `Brian | Project ${slug}`,
     icons: {
-      icon: "/assets/icon.png",
+      icon: "/assets/icon.jpg",
     },
   };
 }
