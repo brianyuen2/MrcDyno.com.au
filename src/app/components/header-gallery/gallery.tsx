@@ -19,6 +19,17 @@ export const Gallery = (props: GalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Preload all images on component mount
+  useEffect(() => {
+    images.forEach((src) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = src.src;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       handleImageChange((currentIndex + 1) % images.length);
@@ -43,6 +54,18 @@ export const Gallery = (props: GalleryProps) => {
 
   return (
     <div className={`relative  ${className}`}>
+      {/* Hidden preloaded images */}
+      <div className="hidden">
+        {images.map((src, index) => (
+          <Image
+            key={index}
+            src={src}
+            alt={`Preload ${index + 1}`}
+            priority={index === 0} // Only prioritize the first image
+          />
+        ))}
+      </div>
+
       {/* Main Image */}
       <div>
         <Image
@@ -51,7 +74,8 @@ export const Gallery = (props: GalleryProps) => {
           className={`min-h-[450px] object-cover  transition-opacity duration-700 ease-in ${
             isTransitioning ? "opacity-70" : "opacity-100"
           }`}
-          priority
+          priority={currentIndex === 0}
+          placeholder="blur"
         />
       </div>
 

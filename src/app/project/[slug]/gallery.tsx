@@ -16,9 +16,20 @@ export const Gallery = (props: GalleryProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const images = props.images;
 
+  // Preload all images on component mount
+  useEffect(() => {
+    images.forEach((src) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }, [images]);
+
   useEffect(() => {
     if (isHovered) return; // Don't auto-play when hovered
-    
+
     const interval = setInterval(() => {
       handleImageChange((currentIndex + 1) % images.length);
     }, autoPlayInterval);
@@ -50,11 +61,25 @@ export const Gallery = (props: GalleryProps) => {
   };
 
   return (
-    <div 
+    <div
       className={`relative  ${className} object-fit`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Hidden preloaded images */}
+      <div className="hidden">
+        {images.map((src, index) => (
+          <Image
+            key={index}
+            src={src}
+            alt={`Preload ${index + 1}`}
+            priority={index === 0} // Only prioritize the first image
+            width={1400}
+            height={450}
+          />
+        ))}
+      </div>
+
       {/* Main Image */}
       <div>
         <Image
@@ -65,7 +90,7 @@ export const Gallery = (props: GalleryProps) => {
           className={`object-contain  transition-opacity duration-700 ease-in ${
             isTransitioning ? "opacity-70" : "opacity-100"
           }`}
-          priority
+          priority={currentIndex === 0}
         />
       </div>
 
@@ -75,18 +100,42 @@ export const Gallery = (props: GalleryProps) => {
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 cursor-pointer"
         aria-label="Previous image"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
-      
+
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110 cursor-pointer"
         aria-label="Next image"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
 
