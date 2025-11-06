@@ -18,17 +18,20 @@ export const Gallery = (props: GalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const handleImageChange = useCallback((newIndex: number) => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    
-    // Wait for fade out, then update current index
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-      setIsTransitioning(false);
-    }, 700); // Match this with CSS transition duration
-  }, [isTransitioning]);
+  const handleImageChange = useCallback(
+    (newIndex: number) => {
+      if (isTransitioning) return;
+
+      setIsTransitioning(true);
+
+      // Wait for fade out, then update current index
+      setTimeout(() => {
+        setCurrentIndex(newIndex);
+        setIsTransitioning(false);
+      }, 700); // Match this with CSS transition duration
+    },
+    [isTransitioning],
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,7 +54,6 @@ export const Gallery = (props: GalleryProps) => {
             key={`preload-${index}`}
             src={src}
             alt={`Preload ${index + 1}`}
-            loading="eager"
             quality={85}
           />
         ))}

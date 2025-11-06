@@ -17,21 +17,24 @@ export const Gallery = (props: GalleryProps) => {
   const [isManualTransition, setIsManualTransition] = useState(false);
   const images = props.images;
 
-  const handleImageChange = useCallback((newIndex: number, isManual = false) => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setIsManualTransition(isManual);
+  const handleImageChange = useCallback(
+    (newIndex: number, isManual = false) => {
+      if (isTransitioning) return;
 
-    // Faster transition for manual navigation, slower for auto-play
-    const transitionDuration = isManual ? 300 : 700;
-    
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-      setIsTransitioning(false);
-      setIsManualTransition(false);
-    }, transitionDuration);
-  }, [isTransitioning]);
+      setIsTransitioning(true);
+      setIsManualTransition(isManual);
+
+      // Faster transition for manual navigation, slower for auto-play
+      const transitionDuration = isManual ? 300 : 700;
+
+      setTimeout(() => {
+        setCurrentIndex(newIndex);
+        setIsTransitioning(false);
+        setIsManualTransition(false);
+      }, transitionDuration);
+    },
+    [isTransitioning],
+  );
 
   useEffect(() => {
     if (isHovered) return; // Don't auto-play when hovered
@@ -41,7 +44,13 @@ export const Gallery = (props: GalleryProps) => {
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlayInterval, images.length, currentIndex, isHovered, handleImageChange]);
+  }, [
+    autoPlayInterval,
+    images.length,
+    currentIndex,
+    isHovered,
+    handleImageChange,
+  ]);
 
   const goToSlide = (index: number) => {
     handleImageChange(index, true); // Manual navigation = faster
@@ -69,7 +78,6 @@ export const Gallery = (props: GalleryProps) => {
             key={`preload-${index}`}
             src={src}
             alt={`Preload ${index + 1}`}
-            loading="eager"
             quality={85}
             width={1400}
             height={450}
