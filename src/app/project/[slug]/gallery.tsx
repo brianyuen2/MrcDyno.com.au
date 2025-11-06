@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface GalleryProps {
@@ -14,18 +14,24 @@ export const Gallery = (props: GalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isManualTransition, setIsManualTransition] = useState(false);
   const images = props.images;
 
-  // Preload all images on component mount
-  useEffect(() => {
-    images.forEach((src) => {
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "image";
-      link.href = src;
-      document.head.appendChild(link);
-    });
-  }, [images]);
+  const handleImageChange = useCallback((newIndex: number, isManual = false) => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setIsManualTransition(isManual);
+
+    // Faster transition for manual navigation, slower for auto-play
+    const transitionDuration = isManual ? 300 : 700;
+    
+    setTimeout(() => {
+      setCurrentIndex(newIndex);
+      setIsTransitioning(false);
+      setIsManualTransition(false);
+    }, transitionDuration);
+  }, [isTransitioning]);
 
   useEffect(() => {
     if (isHovered) return; // Don't auto-play when hovered
@@ -35,29 +41,19 @@ export const Gallery = (props: GalleryProps) => {
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlayInterval, images.length, currentIndex, isHovered]);
-
-  const handleImageChange = (newIndex: number) => {
-    setIsTransitioning(true);
-
-    // Wait for fade out, then update current index
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-      setIsTransitioning(false);
-    }, 700); // Match this with CSS transition duration
-  };
+  }, [autoPlayInterval, images.length, currentIndex, isHovered, handleImageChange]);
 
   const goToSlide = (index: number) => {
-    handleImageChange(index);
+    handleImageChange(index, true); // Manual navigation = faster
   };
 
   const goToPrevious = () => {
     const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    handleImageChange(prevIndex);
+    handleImageChange(prevIndex, true); // Manual navigation = faster
   };
 
   const goToNext = () => {
-    handleImageChange((currentIndex + 1) % images.length);
+    handleImageChange((currentIndex + 1) % images.length, true); // Manual navigation = faster
   };
 
   return (
@@ -66,14 +62,15 @@ export const Gallery = (props: GalleryProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Hidden preloaded images */}
+      {/* Hidden preloaded images for better mobile performance */}
       <div className="hidden">
         {images.map((src, index) => (
           <Image
-            key={index}
+            key={`preload-${index}`}
             src={src}
             alt={`Preload ${index + 1}`}
-            priority={index === 0} // Only prioritize the first image
+            loading="eager"
+            quality={85}
             width={1400}
             height={450}
           />
@@ -87,10 +84,11 @@ export const Gallery = (props: GalleryProps) => {
           alt={`Slide ${currentIndex + 1}`}
           width={1400}
           height={450}
-          className={`object-contain  transition-opacity duration-700 ease-in ${
-            isTransitioning ? "opacity-70" : "opacity-100"
-          }`}
+          className={`object-contain transition-opacity ${
+            isManualTransition ? "duration-300" : "duration-700"
+          } ease-in ${isTransitioning ? "opacity-70" : "opacity-100"}`}
           priority={currentIndex === 0}
+          quality={85}
         />
       </div>
 
