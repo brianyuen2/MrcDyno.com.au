@@ -6,6 +6,23 @@ import car1 from "./assets/car1.jpg";
 import car2 from "./assets/car2.jpg";
 import bike1 from "./assets/bike1.jpg";
 
+// Hook to detect mobile screen size
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  return isMobile;
+};
+
 interface GalleryProps {
   autoPlayInterval?: number;
   className?: string;
@@ -17,6 +34,7 @@ export const Gallery = (props: GalleryProps) => {
   const { autoPlayInterval = 4000, className } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleImageChange = useCallback(
     (newIndex: number) => {
@@ -54,7 +72,7 @@ export const Gallery = (props: GalleryProps) => {
             key={`preload-${index}`}
             src={src}
             alt={`Preload ${index + 1}`}
-            quality={85}
+            quality={isMobile ? 50 : 85}
           />
         ))}
       </div>
@@ -69,7 +87,7 @@ export const Gallery = (props: GalleryProps) => {
           }`}
           priority={currentIndex === 0}
           placeholder="blur"
-          quality={85}
+          quality={isMobile ? 50 : 85}
         />
       </div>
 

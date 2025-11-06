@@ -3,6 +3,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
+// Hook to detect mobile screen size
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  return isMobile;
+};
+
 interface GalleryProps {
   autoPlayInterval?: number;
   className?: string;
@@ -16,6 +33,7 @@ export const Gallery = (props: GalleryProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isManualTransition, setIsManualTransition] = useState(false);
   const images = props.images;
+  const isMobile = useIsMobile();
 
   const handleImageChange = useCallback(
     (newIndex: number, isManual = false) => {
@@ -78,7 +96,7 @@ export const Gallery = (props: GalleryProps) => {
             key={`preload-${index}`}
             src={src}
             alt={`Preload ${index + 1}`}
-            quality={85}
+            quality={isMobile ? 50 : 85}
             width={1400}
             height={450}
           />
@@ -96,7 +114,7 @@ export const Gallery = (props: GalleryProps) => {
             isManualTransition ? "duration-300" : "duration-700"
           } ease-in ${isTransitioning ? "opacity-70" : "opacity-100"}`}
           priority={currentIndex === 0}
-          quality={85}
+          quality={isMobile ? 50 : 85}
         />
       </div>
 
