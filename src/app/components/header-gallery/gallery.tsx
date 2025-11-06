@@ -73,6 +73,7 @@ export const Gallery = (props: GalleryProps) => {
             src={src}
             alt={`Preload ${index + 1}`}
             quality={isMobile ? 50 : 85}
+            loading="eager"
           />
         ))}
       </div>
@@ -88,6 +89,7 @@ export const Gallery = (props: GalleryProps) => {
           priority={currentIndex === 0}
           placeholder="blur"
           quality={isMobile ? 50 : 85}
+          loading="eager"
         />
       </div>
 

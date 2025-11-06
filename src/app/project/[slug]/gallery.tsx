@@ -99,6 +99,7 @@ export const Gallery = (props: GalleryProps) => {
             quality={isMobile ? 50 : 85}
             width={1400}
             height={450}
+            loading="eager"
           />
         ))}
       </div>
@@ -115,6 +116,7 @@ export const Gallery = (props: GalleryProps) => {
           } ease-in ${isTransitioning ? "opacity-70" : "opacity-100"}`}
           priority={currentIndex === 0}
           quality={isMobile ? 50 : 85}
+          loading="eager"
         />
       </div>
 
