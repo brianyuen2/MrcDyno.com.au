@@ -11,7 +11,7 @@ const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkIsMobile = () => {1
+    const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768); // md breakpoint
     };
 

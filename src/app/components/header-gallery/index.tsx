@@ -4,10 +4,10 @@ import React from "react";
 import { Gallery } from "@/app/components/header-gallery/gallery";
 
 export const HeaderGallery = () => {
-  const scrolltoHash = function (element_id: string) {
-    const element = document.getElementById(element_id);
-    element?.scrollIntoView(true);
-  };
+  // const scrolltoHash = function (element_id: string) {
+  //   const element = document.getElementById(element_id);
+  //   element?.scrollIntoView(true);
+  // };
 
   return (
     <div className="relative" id={"home"}>
