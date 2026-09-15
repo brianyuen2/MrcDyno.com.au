@@ -36,7 +36,7 @@ const Card = (props: {
         <Image src={filename} alt={"Project image"} />
         <div className="absolute inset-0  group-hover:bg-white/15 transition-all duration-200"></div>
         <div
-          className={`flex absolute inset-0 bg-black/25 justify-center items-center font-bold 
+          className={`imageText flex absolute inset-0 bg-black/25 justify-center items-center font-bold
           text-2xl :text-4xl xl:text-6xl`}
         >
           {"PROJECT: " + projectName}

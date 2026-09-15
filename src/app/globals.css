@@ -5,20 +5,35 @@ html {
 }
 
 :root {
+  /* MRC Dyno brand palette */
   --background: #121212;
-  --foreground: #F8F0E3;
+  --foreground: #f8f0e3;
+  --muted: #1e1e1e;
+  /* Blue lifted straight out of the MRC icon */
+  --accent: #003399;
+  --accent-dark: #002673;
+  /* Brand blue lightened so it stays legible on dark surfaces */
+  --accent-light: #6f9bff;
+  /* Cream used for copy that sits on top of photography */
+  --image-text: #f8f0e3;
+}
+
+/* Text overlaid on an image: keeps the old light-on-dark colour.
+   Lives in the components layer so Tailwind utilities (text-*, hover:text-*)
+   can still override it — unlayered CSS would always win instead. */
+@layer components {
+  .imageText {
+    color: var(--image-text);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
 }
 
 body {

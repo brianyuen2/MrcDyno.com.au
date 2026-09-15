@@ -35,7 +35,7 @@ export const Footer = () => {
       <button
         onClick={() => scrolltoHash("home")}
         className={`text-lg md:text-lg
-                    px-2 py-1
+                    px-4 py-2
                     mt-6
                     border border-[#F8F0E3] rounded-lg cursor-pointer
                     transition-all duration-200 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:bg-white/15
