@@ -6,9 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "@/app/assets/mrc.png";
 
-const PHONE = "(02) 9634 5399";
-const PHONE_HREF = "tel:+61296345399";
-
 const links = [
   { label: "Home", href: "/" },
   { label: "Performance", href: "/performance" },
@@ -118,7 +115,7 @@ export const Navbar = () => {
       <div
         id="mobile-menu"
         className={`overflow-hidden border-t border-white/15 bg-[#7a7a7a]/90 backdrop-blur transition-[max-height] duration-300 ease-in-out min-[1100px]:hidden ${
-          isOpen ? "max-h-[32rem]" : "max-h-0 border-t-0"
+          isOpen ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >
         <ul className="flex flex-col px-4 py-2">
@@ -139,14 +136,6 @@ export const Navbar = () => {
               </li>
             );
           })}
-          <li className="border-t border-white/15">
-            <a
-              href={PHONE_HREF}
-              className="block py-3 text-lg font-bold text-accent-light"
-            >
-              {PHONE}
-            </a>
-          </li>
         </ul>
       </div>
     </header>
