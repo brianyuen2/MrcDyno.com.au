@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import car1 from "./assets/car1.jpg";
-import car2 from "./assets/car2.jpg";
-import bike1 from "./assets/bike1.jpg";
+import car1 from "./assets/gallery1.jpg";
+import car2 from "./assets/gallery2.jpg";
+import bike1 from "./assets/gallery3.jpg";
 
 // Hook to detect mobile screen size
 const useIsMobile = () => {
@@ -78,12 +78,22 @@ export const Gallery = (props: GalleryProps) => {
         ))}
       </div>
 
-      {/* Main Image with smooth transitions */}
-      <div>
+      {/* Main Image with smooth transitions.
+          The box tracks the source aspect ratio, so the full image is shown for
+          as long as it fits. The min-heights are a floor: once the viewport is
+          too narrow for that ratio (~<1050px) the box stays taller than the
+          image and object-cover trims the left/right edges instead. */}
+      <div
+        className="relative w-full aspect-[2048/922] overflow-hidden
+                   min-h-[380px] sm:min-h-[420px] md:min-h-[460px]
+                   max-h-[90svh]"
+      >
         <Image
           src={images[currentIndex]}
           alt={`Slide ${currentIndex + 1}`}
-          className={`min-h-[450px] object-cover transition-opacity duration-700 ease-in ${
+          fill
+          sizes="100vw"
+          className={`object-cover transition-opacity duration-700 ease-in ${
             isTransitioning ? "opacity-70" : "opacity-100"
           }`}
           priority={currentIndex === 0}

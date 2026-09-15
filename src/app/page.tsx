@@ -3,7 +3,7 @@ import { HeaderGallery } from "@/app/components/header-gallery";
 import { About } from "@/app/components/about";
 
 export const metadata: Metadata = {
-  title: "Brian | Engineer & Maker",
+  title: "MRC Dyno - Services & Performance",
   icons: {
     icon: "/assets/icon.jpg",
   },
