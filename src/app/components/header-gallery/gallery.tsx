@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import car1 from "./assets/gallery1.jpg";
-import car2 from "./assets/gallery2.jpg";
-import bike1 from "./assets/gallery3.jpg";
+import img1 from "./assets/gallery1.jpg";
+import img3 from "./assets/gallery2.jpg";
+import img2 from "./assets/gallery4.jpg";
 
 // Hook to detect mobile screen size
 const useIsMobile = () => {
@@ -26,12 +26,16 @@ const useIsMobile = () => {
 interface GalleryProps {
   autoPlayInterval?: number;
   className?: string;
+  overlay?: (state: {
+    index: number;
+    isTransitioning: boolean;
+  }) => React.ReactNode;
 }
 
 export const Gallery = (props: GalleryProps) => {
-  const images = [car1, bike1, car2];
+  const images = [img2, img1, img3];
 
-  const { autoPlayInterval = 4000, className } = props;
+  const { autoPlayInterval = 4000, className, overlay } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const isMobile = useIsMobile();
@@ -78,11 +82,6 @@ export const Gallery = (props: GalleryProps) => {
         ))}
       </div>
 
-      {/* Main Image with smooth transitions.
-          The box tracks the source aspect ratio, so the full image is shown for
-          as long as it fits. The min-heights are a floor: once the viewport is
-          too narrow for that ratio (~<1050px) the box stays taller than the
-          image and object-cover trims the left/right edges instead. */}
       <div
         className="relative w-full aspect-[2048/922] overflow-hidden
                    min-h-[380px] sm:min-h-[420px] md:min-h-[460px]
@@ -101,11 +100,13 @@ export const Gallery = (props: GalleryProps) => {
           quality={isMobile ? 50 : 85}
           loading="eager"
         />
+
+        {overlay?.({ index: currentIndex, isTransitioning })}
       </div>
 
       {/* Navigation Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-        {images.map((_, index) => (
+        {images.map((_, index) => (        
           <button
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-700 
