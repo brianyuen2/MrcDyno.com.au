@@ -84,7 +84,7 @@ export const Gallery = (props: GalleryProps) => {
 
       <div
         className="relative w-full aspect-[2048/922] overflow-hidden
-                   min-h-[84svh] sm:min-h-[72svh] md:min-h-[552px]
+                   min-h-[76svh] sm:min-h-[65svh] md:min-h-[497px]
                    max-h-[90svh]"
       >
         <Image
