@@ -23,13 +23,14 @@ const OPENING_HOURS = [
 export const Contact = () => (
   <div
     id={"contact"}
-    className="px-7 pt-8 pb-6 font-sans lg:pt-12 lg:pb-12"
+    className="mx-auto max-w-7xl px-4 pt-8 pb-6 font-sans sm:px-7 lg:pt-12 lg:pb-12"
   >
-    <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
-      {"Contact Us"}
-    </h2>
+    <div className="rounded-2xl border border-white/10 bg-muted px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
+      <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
+        {"Contact Us"}
+      </h2>
 
-    <div className="mx-auto mt-8 grid max-w-6xl gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-12">
+      <div className="mx-auto mt-8 grid max-w-6xl gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-12">
       <div className="flex flex-col gap-4 text-base md:gap-8 md:text-xl">
         <Detail label="Workshop">
           <address className="not-italic">
@@ -87,13 +88,14 @@ export const Contact = () => (
           allowFullScreen
           className="absolute inset-0 h-full w-full border-0"
         />
+        </div>
       </div>
     </div>
   </div>
 );
 
 const Detail = (props: { label: string; children: React.ReactNode }) => (
-  <div>
+  <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4 md:px-6 md:py-5">
     <div className="text-xs uppercase tracking-wide opacity-60 md:text-base">
       {props.label}
     </div>

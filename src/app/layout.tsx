@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mrcdyno.com.au"),
-  title: "MRC Dyno | Dyno Tuning, Performance & Engine Builds — Seven Hills",
+  title: "MRC Dyno - Performance & Restoration",
   description:
     "MRC Dyno Services & Performance in Seven Hills, Sydney. Dyno tuning, " +
     "Nistune specialists, performance upgrades, engine builds and restoration. " +
