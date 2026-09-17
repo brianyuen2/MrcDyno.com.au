@@ -4,6 +4,14 @@ html {
   scroll-behavior: smooth;
 }
 
+@layer base {
+  /* The navbar is fixed, so in-page anchors have to stop short of it or the
+     section heading lands underneath the bar. */
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
 :root {
   /* MRC Dyno brand palette */
   --background: #121212;

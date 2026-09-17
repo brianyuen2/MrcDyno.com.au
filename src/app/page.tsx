@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { HeaderGallery } from "@/app/components/header-gallery";
 import { About } from "@/app/components/about";
+import { Contact } from "@/app/components/contact";
 
 export const metadata: Metadata = {
   title: "MRC Dyno - Services & Performance",
@@ -14,6 +15,7 @@ export default function Home() {
     <div>
       <HeaderGallery />
       <About />
+      <Contact />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 
 import { Gallery } from "@/app/components/header-gallery/gallery";
 
@@ -53,8 +52,8 @@ export const HeaderGallery = () => {
             {/* Pinned to the hero rather than stacked under the copy, so a
                 one-line slide and a two-line slide put it in the same spot. */}
             <div className="absolute inset-x-0 bottom-12 flex justify-center md:bottom-16 xl:bottom-24">
-              <Link
-                href="/contact-us"
+              <a
+                href="#contact"
                 className="rounded-lg border border-current cursor-pointer
                            uppercase tracking-wide
                            px-4 py-2 text-sm
@@ -64,7 +63,7 @@ export const HeaderGallery = () => {
                            hover:scale-105 hover:bg-white/15 hover:shadow-lg"
               >
                 {"Learn more"}
-              </Link>
+              </a>
             </div>
           </div>
         )}

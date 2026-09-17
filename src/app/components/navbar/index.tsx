@@ -2,15 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import logo from "@/app/assets/mrc.png";
 
+/* Single page, so every link is an in-page anchor. The smooth scroll comes from
+   `scroll-behavior: smooth` in globals.css — no click handler needed. */
 const links = [
-  { label: "Home", href: "/" },
-  { label: "Performance", href: "/performance" },
-  { label: "Restoration", href: "/restoration" },
-  { label: "Contact Us", href: "/contact-us", cta: true },
+  { label: "Performance", href: "#performance" },
+  { label: "Engine Builds", href: "#engine-builds" },
+  { label: "Restoration", href: "#restoration" },
+  { label: "Contact Us", href: "#contact", cta: true },
 ];
 
 // Shared button shape; the hover fill differs between the plain links and the
@@ -24,9 +24,9 @@ const ctaFill = "bg-accent hover:bg-accent-dark";
 const plainFill = "hover:bg-white/25";
 
 export const Navbar = () => {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const lastScrollY = useRef(0);
 
   // Fade out on the way down, fade back in as soon as the user scrolls up.
@@ -36,6 +36,10 @@ export const Navbar = () => {
     const onScroll = () => {
       const scrollY = window.scrollY;
       const delta = scrollY - lastScrollY.current;
+
+      // Set before the jitter guard below, so it still settles correctly when
+      // the user creeps past the threshold a pixel at a time.
+      setShowBackToTop(scrollY > 400);
 
       // Ignore sub-pixel jitter and rubber-banding past the top.
       if (Math.abs(delta) < 6) return;
@@ -51,10 +55,8 @@ export const Navbar = () => {
   // Keep the bar up while the mobile menu is open.
   const isVisible = !isHidden || isOpen;
 
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => setIsOpen(false), [pathname]);
-
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 bg-[#7a7a7a]/70 shadow-sm backdrop-blur
                   transition-all duration-300 ease-in-out ${
@@ -64,9 +66,9 @@ export const Navbar = () => {
                   }`}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-10 py-4 pl-3 pr-6 md:gap-16 md:py-5 md:pl-6 md:pr-12 min-[1100px]:gap-8 min-[1100px]:pr-8 2xl:gap-16 2xl:pr-16">
-        <Link
-          href="/"
-          aria-label="MRC Dyno Services & Performance — home"
+        <a
+          href="#home"
+          aria-label="MRC Dyno Services & Performance — back to top"
           className="flex"
         >
           <Image
@@ -75,27 +77,22 @@ export const Navbar = () => {
             className="block h-12 w-auto sm:h-14 xl:h-16 2xl:h-20"
             priority
           />
-        </Link>
+        </a>
 
         {/* Desktop links */}
         <ul className="hidden shrink-0 items-center gap-4 whitespace-nowrap min-[1100px]:flex 2xl:gap-6">
-          {links.map(({ label, href, cta }) => {
-            const isActive = pathname === href;
-
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`${linkBase} text-sm 2xl:text-base font-medium ${
-                    cta ? ctaFill : plainFill
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
+          {links.map(({ label, href, cta }) => (
+            <li key={href}>
+              <a
+                href={href}
+                className={`${linkBase} text-sm 2xl:text-base font-medium ${
+                  cta ? ctaFill : plainFill
+                }`}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         {/* Mobile menu toggle */}
@@ -119,28 +116,62 @@ export const Navbar = () => {
         }`}
       >
         <ul className="flex flex-col px-4 py-2">
-          {links.map(({ label, href, cta }) => {
-            const isActive = pathname === href;
-
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`${linkBase} text-base text-center my-1 ${
-                    cta ? ctaFill : plainFill
-                  }`}
-                >
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
+          {links.map(({ label, href, cta }) => (
+            <li key={href}>
+              <a
+                href={href}
+                /* Hash links do not change the route, so the menu has to be
+                   closed explicitly or it would stay open over the target. */
+                onClick={() => setIsOpen(false)}
+                className={`${linkBase} text-base text-center my-1 ${
+                  cta ? ctaFill : plainFill
+                }`}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>
+
+      {/* Floating back-to-top. Lives here with the other scroll state, but
+          anchors to the bottom-right of the viewport rather than the bar. */}
+      <a
+        href="#home"
+        aria-label="Back to top"
+        className={`fixed bottom-3 right-3 z-40 flex h-10 w-10 items-center
+                    justify-center rounded-[0.25em] bg-[#d65050]/60 text-white
+                    shadow-lg backdrop-blur transition-all duration-300 ease-in-out
+                    hover:bg-[#d65050] md:bottom-4 md:right-4 md:h-12 md:w-12 ${
+                      showBackToTop
+                        ? "opacity-100"
+                        : "pointer-events-none translate-y-2 opacity-0"
+                    }`}
+      >
+        <ArrowUpIcon />
+      </a>
+    </>
   );
 };
+
+const ArrowUpIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6 md:h-7 md:w-7"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    role="img"
+    aria-hidden="true"
+  >
+    <path d="M12 20V4" />
+    <path d="m5 11 7-7 7 7" />
+  </svg>
+);
 
 const MenuIcon = () => (
   <svg
