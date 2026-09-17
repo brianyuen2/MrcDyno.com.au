@@ -3,8 +3,6 @@ import React from "react";
 
 import { Gallery } from "@/app/components/header-gallery/gallery";
 
-/* One entry per gallery image, in the order the gallery cycles them:
-   the workshop full of R32s, the Tucks Rd shopfront, then the Supras. */
 const slides = [
   {
     heading: "Performance Specialists",
@@ -49,8 +47,6 @@ export const HeaderGallery = () => {
               </p>
             </div>
 
-            {/* Pinned to the hero rather than stacked under the copy, so a
-                one-line slide and a two-line slide put it in the same spot. */}
             <div className="absolute inset-x-0 bottom-12 flex justify-center md:bottom-16 xl:bottom-24">
               <a
                 href="#contact"

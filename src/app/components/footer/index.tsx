@@ -4,16 +4,11 @@ import React from "react";
 
 const EMAIL = "mrcdyno@iinet.net.au";
 
-/* Flat tiles shaped like the ones on mrcdyno.com.au: 3.8em square, 0.25em
-   corners. The fill is kept separate from the shape because Tailwind resolves
-   competing bg-* utilities by stylesheet order, not by class-string order. */
 const tile = `flex items-center justify-center shrink-0
               h-12 w-12 md:h-14 md:w-14 xl:h-16 xl:w-16
               rounded-[0.25em] text-white
               transition-colors duration-200 ease-in-out`;
 
-/* Sized with classes, not width/height attributes, so the glyph tracks the
-   tile at each breakpoint. */
 const iconSize = "h-6 w-6 md:h-7 md:w-7 xl:h-8 xl:w-8";
 
 const blueFill = "bg-accent hover:bg-accent-dark";
@@ -63,8 +58,6 @@ export const Footer = () => {
   );
 };
 
-/* Brand marks drawn inline rather than as image files: they inherit the footer's
-   text colour and stay crisp at any size. */
 const FacebookIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

@@ -16,9 +16,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Brian | Engineer & Maker",
+  metadataBase: new URL("https://mrcdyno.com.au"),
+  title: "MRC Dyno | Dyno Tuning, Performance & Engine Builds — Seven Hills",
   description:
-    "Hey, I'm Brian. Software engineer & car enthusiast. Want your own custom website? Message me :)",
+    "MRC Dyno Services & Performance in Seven Hills, Sydney. Dyno tuning, " +
+    "Nistune specialists, performance upgrades, engine builds and restoration. " +
+    "Call (02) 9634 5399.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_AU",
+    url: "https://mrcdyno.com.au",
+    siteName: "MRC Dyno Services & Performance",
+    title: "MRC Dyno | Dyno Tuning, Performance & Engine Builds",
+    description:
+      "Dyno tuning, performance upgrades, engine builds and restoration in " +
+      "Seven Hills, Sydney.",
+  },
 };
 
 export default function RootLayout({

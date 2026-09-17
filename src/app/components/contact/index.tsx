@@ -5,8 +5,6 @@ const PHONE_HREF = "tel:+61296345399";
 const EMAIL = "mrcdyno@iinet.net.au";
 const ADDRESS_LINES = ["Unit 1, 20 Tucks Rd", "Seven Hills NSW 2147"];
 
-/* Google Maps "Share > Embed a map" URL for the workshop. No API key and no
-   billing account needed, unlike the Maps JavaScript API. */
 const MAP_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.298815130807" +
   "!2d150.95361068088116!3d-33.77878090998942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768" +
@@ -80,8 +78,6 @@ export const Contact = () => (
         </Detail>
       </div>
 
-      {/* Aspect-ratio wrapper rather than the fixed 600x450 Google hands you,
-          and lazy so the map's payload does not block the rest of the page. */}
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl md:aspect-[16/9] lg:aspect-auto">
         <iframe
           src={MAP_EMBED}

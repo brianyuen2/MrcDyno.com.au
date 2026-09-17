@@ -14,9 +14,9 @@ export const About = () => (
     id={"about"}
     className={`py-8 lg:py-12 px-7 flex flex-col  items-center text-center  font-sans `}
   >
-    <div className={`text-2xl lg:text-5xl xl:text-6xl  text-center font-bold`}>
+    <h2 className={`text-2xl lg:text-5xl xl:text-6xl  text-center font-bold`}>
       {intro}
-    </div>
+    </h2>
     <div
       className={`my-7 lg:my-12
       max-w-[150px] lg:max-w-[300px] 2xl:max-w-[400px]`}
@@ -39,5 +39,5 @@ export const About = () => (
 );
 
 const TextBlock = (props: { message: string }) => {
-  return <div className={`pt-6 lg:pt-8 xl:pt=16`}>{props.message}</div>;
+  return <p className={`pt-6 lg:pt-8 xl:pt-16`}>{props.message}</p>;
 };

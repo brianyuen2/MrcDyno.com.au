@@ -2,12 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-/* White-text variant of the logo: the original is black artwork meant for a
-   light background and loses definition on the blue bar. */
 import logo from "@/app/assets/mrc-white.png";
 
-/* Single page, so every link is an in-page anchor. The smooth scroll comes from
-   `scroll-behavior: smooth` in globals.css — no click handler needed. */
 const links = [
   { label: "Performance", href: "#performance" },
   { label: "Engine Builds", href: "#engine-builds" },
@@ -15,8 +11,6 @@ const links = [
   { label: "Contact Us", href: "#contact", cta: true },
 ];
 
-// Shared button shape; the hover fill differs between the plain links and the
-// blue call to action, so it is applied per variant rather than here.
 const linkBase = `imageText block uppercase tracking-wide
                   px-4 py-2
                   rounded-lg cursor-pointer
@@ -31,7 +25,6 @@ export const Navbar = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const lastScrollY = useRef(0);
 
-  // Fade out on the way down, fade back in as soon as the user scrolls up.
   useEffect(() => {
     lastScrollY.current = window.scrollY;
 
@@ -39,11 +32,8 @@ export const Navbar = () => {
       const scrollY = window.scrollY;
       const delta = scrollY - lastScrollY.current;
 
-      // Set before the jitter guard below, so it still settles correctly when
-      // the user creeps past the threshold a pixel at a time.
       setShowBackToTop(scrollY > 400);
 
-      // Ignore sub-pixel jitter and rubber-banding past the top.
       if (Math.abs(delta) < 6) return;
 
       lastScrollY.current = scrollY;
@@ -54,11 +44,8 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Keep the bar up while the mobile menu is open.
   const isVisible = !isHidden || isOpen;
 
-  /* Scroll to the top without letting the browser append #home to the URL. The
-     href stays put so the link still works with JS disabled. */
   const scrollToTop = (event: React.MouseEvent) => {
     event.preventDefault();
     setIsOpen(false);
@@ -90,7 +77,6 @@ export const Navbar = () => {
           />
         </a>
 
-        {/* Desktop links */}
         <ul className="hidden shrink-0 items-center gap-4 whitespace-nowrap min-[1100px]:flex 2xl:gap-6">
           {links.map(({ label, href, cta }) => (
             <li key={href}>
@@ -106,7 +92,6 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile menu toggle */}
         <button
           type="button"
           onClick={() => setIsOpen((open) => !open)}
@@ -119,7 +104,6 @@ export const Navbar = () => {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       <div
         id="mobile-menu"
         className={`overflow-hidden border-t border-white/15 bg-accent/90 backdrop-blur transition-[max-height] duration-300 ease-in-out min-[1100px]:hidden ${
@@ -131,8 +115,6 @@ export const Navbar = () => {
             <li key={href}>
               <a
                 href={href}
-                /* Hash links do not change the route, so the menu has to be
-                   closed explicitly or it would stay open over the target. */
                 onClick={() => setIsOpen(false)}
                 className={`${linkBase} text-base text-center my-1 ${
                   cta ? ctaFill : plainFill
@@ -146,8 +128,6 @@ export const Navbar = () => {
       </div>
     </header>
 
-      {/* Floating back-to-top. Lives here with the other scroll state, but
-          anchors to the bottom-right of the viewport rather than the bar. */}
       <a
         href="#home"
         onClick={scrollToTop}
