@@ -1,5 +1,5 @@
 import { HeaderGallery } from "@/app/components/header-gallery";
-import { About } from "@/app/components/about";
+import { Performance } from "@/app/components/performance";
 import { Contact } from "@/app/components/contact";
 
 const localBusiness = {
@@ -41,7 +41,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
       <HeaderGallery />
-      <About />
+      <Performance />
       <Contact />
     </div>
   );
