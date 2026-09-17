@@ -2,7 +2,9 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import logo from "@/app/assets/mrc.png";
+/* White-text variant of the logo: the original is black artwork meant for a
+   light background and loses definition on the blue bar. */
+import logo from "@/app/assets/mrc-white.png";
 
 /* Single page, so every link is an in-page anchor. The smooth scroll comes from
    `scroll-behavior: smooth` in globals.css — no click handler needed. */
@@ -20,7 +22,7 @@ const linkBase = `imageText block uppercase tracking-wide
                   rounded-lg cursor-pointer
                   transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg`;
 
-const ctaFill = "bg-accent hover:bg-accent-dark";
+const ctaFill = "bg-[#d65050] hover:bg-[#b73d3d]";
 const plainFill = "hover:bg-white/25";
 
 export const Navbar = () => {
@@ -66,14 +68,14 @@ export const Navbar = () => {
   return (
     <>
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-[#7a7a7a]/70 shadow-sm backdrop-blur
+      className={`fixed inset-x-0 top-0 z-50 bg-accent/90 shadow-sm backdrop-blur
                   transition-all duration-300 ease-in-out ${
                     isVisible
                       ? "translate-y-0 opacity-100"
                       : "pointer-events-none -translate-y-2 opacity-0"
                   }`}
     >
-      <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-10 py-4 pl-3 pr-6 md:gap-16 md:py-5 md:pl-6 md:pr-12 min-[1100px]:gap-8 min-[1100px]:pr-8 2xl:gap-16 2xl:pr-16">
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-10 py-2 pl-3 pr-6 md:gap-16 md:py-3 md:pl-6 md:pr-12 min-[1100px]:gap-8 min-[1100px]:pr-8 2xl:gap-16 2xl:pr-16">
         <a
           href="#home"
           onClick={scrollToTop}
@@ -120,7 +122,7 @@ export const Navbar = () => {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-t border-white/15 bg-[#7a7a7a]/90 backdrop-blur transition-[max-height] duration-300 ease-in-out min-[1100px]:hidden ${
+        className={`overflow-hidden border-t border-white/15 bg-accent/90 backdrop-blur transition-[max-height] duration-300 ease-in-out min-[1100px]:hidden ${
           isOpen ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >

@@ -18,10 +18,10 @@ html {
   /* Cool off-white rather than pure #fff, which haloes on a near-black page */
   --foreground: #f2f2ef;
   --muted: #1e1e1e;
-  /* Blue lifted straight out of the MRC icon */
+  /* Brand blue, straight from the MRC icon */
   --accent: #003399;
   --accent-dark: #002673;
-  /* Brand blue lightened so it stays legible on dark surfaces */
+  /* Lightened for link hovers and small text on dark surfaces */
   --accent-light: #6f9bff;
   /* Copy that sits on top of photography — kept in step with --foreground so
      the hero and the body copy do not read as two different whites */
