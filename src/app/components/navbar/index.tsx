@@ -55,6 +55,14 @@ export const Navbar = () => {
   // Keep the bar up while the mobile menu is open.
   const isVisible = !isHidden || isOpen;
 
+  /* Scroll to the top without letting the browser append #home to the URL. The
+     href stays put so the link still works with JS disabled. */
+  const scrollToTop = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
     <header
@@ -68,6 +76,7 @@ export const Navbar = () => {
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-10 py-4 pl-3 pr-6 md:gap-16 md:py-5 md:pl-6 md:pr-12 min-[1100px]:gap-8 min-[1100px]:pr-8 2xl:gap-16 2xl:pr-16">
         <a
           href="#home"
+          onClick={scrollToTop}
           aria-label="MRC Dyno Services & Performance — back to top"
           className="flex"
         >
@@ -139,6 +148,7 @@ export const Navbar = () => {
           anchors to the bottom-right of the viewport rather than the bar. */}
       <a
         href="#home"
+        onClick={scrollToTop}
         aria-label="Back to top"
         className={`fixed bottom-3 right-3 z-40 flex h-10 w-10 items-center
                     justify-center rounded-[0.25em] bg-[#d65050]/35 text-white
