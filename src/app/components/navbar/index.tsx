@@ -141,8 +141,8 @@ export const Navbar = () => {
         href="#home"
         aria-label="Back to top"
         className={`fixed bottom-3 right-3 z-40 flex h-10 w-10 items-center
-                    justify-center rounded-[0.25em] bg-[#d65050]/60 text-white
-                    shadow-lg backdrop-blur transition-all duration-300 ease-in-out
+                    justify-center rounded-[0.25em] bg-[#d65050]/35 text-white
+                    shadow-lg transition-all duration-300 ease-in-out
                     hover:bg-[#d65050] md:bottom-4 md:right-4 md:h-12 md:w-12 ${
                       showBackToTop
                         ? "opacity-100"

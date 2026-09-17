@@ -48,13 +48,16 @@ export const Footer = () => {
       </div>
 
       <div className={`pt-6 text-center text-xs opacity-80 md:text-sm`}>
-        {"© 2026 MRC Dyno. Proudly powered by "}
-        <a
-          href={"mailto:brianyuen2@gmail.com"}
-          className={`underline underline-offset-4 transition-colors duration-200 hover:text-accent-light`}
-        >
-          {"brianyuen2@gmail.com"}
-        </a>
+        <div>{"© 2026 MRC Dyno."}</div>
+        <div className={`pt-1`}>
+          {"Proudly powered by "}
+          <a
+            href={"mailto:brianyuen2@gmail.com"}
+            className={`underline underline-offset-4 transition-colors duration-200 hover:text-accent-light`}
+          >
+            {"brianyuen2@gmail.com"}
+          </a>
+        </div>
       </div>
     </div>
   );

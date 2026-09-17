@@ -12,7 +12,7 @@ const slides = [
   },
   {
     heading: "Vehicle Restoration",
-    body: "Restore your pride and joy to showroom condition with our expert restoration services.",
+    body: "Restore your car to showroom condition with our expert restoration services.",
   },
   {
     heading: "Engine Builds",
