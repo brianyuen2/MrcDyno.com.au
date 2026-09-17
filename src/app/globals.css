@@ -15,15 +15,17 @@ html {
 :root {
   /* MRC Dyno brand palette */
   --background: #121212;
-  --foreground: #f8f0e3;
+  /* Cool off-white rather than pure #fff, which haloes on a near-black page */
+  --foreground: #f2f2ef;
   --muted: #1e1e1e;
   /* Blue lifted straight out of the MRC icon */
   --accent: #003399;
   --accent-dark: #002673;
   /* Brand blue lightened so it stays legible on dark surfaces */
   --accent-light: #6f9bff;
-  /* Cream used for copy that sits on top of photography */
-  --image-text: #f8f0e3;
+  /* Copy that sits on top of photography — kept in step with --foreground so
+     the hero and the body copy do not read as two different whites */
+  --image-text: #f2f2ef;
 }
 
 /* Text overlaid on an image: keeps the old light-on-dark colour.
