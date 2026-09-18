@@ -1,5 +1,7 @@
 import { HeaderGallery } from "@/app/components/header-gallery";
 import { Performance } from "@/app/components/performance";
+import { EngineBuilds } from "@/app/components/engine-builds";
+import { Restoration } from "@/app/components/restoration";
 import { Contact } from "@/app/components/contact";
 
 const localBusiness = {
@@ -42,6 +44,8 @@ export default function Home() {
       />
       <HeaderGallery />
       <Performance />
+      <EngineBuilds />
+      <Restoration />
       <Contact />
     </div>
   );

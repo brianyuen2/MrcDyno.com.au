@@ -101,6 +101,7 @@ export const Performance = () => (
       image={parts}
       alt="A Mantic performance clutch kit and flywheel ready to be fitted at MRC Dyno"
       paragraphs={PERFORMANCE_UPGRADES}
+      noTint
     />
 
     <ul className="mt-6 grid grid-cols-6 gap-1 md:mt-8 md:grid-cols-8 md:gap-3 lg:mt-12">
@@ -129,8 +130,17 @@ const Row = (props: {
   alt: string;
   paragraphs: string[];
   imageFirst?: boolean;
+  noTint?: boolean;
 }) => {
-  const { title, titleAs = "h3", image, alt, paragraphs, imageFirst } = props;
+  const {
+    title,
+    titleAs = "h3",
+    image,
+    alt,
+    paragraphs,
+    imageFirst,
+    noTint,
+  } = props;
   const Heading = titleAs;
 
   return (
@@ -161,7 +171,7 @@ const Row = (props: {
           placeholder="blur"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/15" />
+        {!noTint && <div className="absolute inset-0 bg-black/15" />}
       </div>
     </div>
   );

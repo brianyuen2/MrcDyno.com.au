@@ -49,7 +49,7 @@ export const HeaderGallery = () => {
 
             <div className="absolute inset-x-0 bottom-12 flex justify-center md:bottom-16 xl:bottom-24">
               <a
-                href="#contact"
+                href="#performance"
                 className="rounded-lg border border-current cursor-pointer
                            uppercase tracking-wide
                            px-4 py-2 text-sm

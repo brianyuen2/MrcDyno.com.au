@@ -8,7 +8,25 @@ html {
   /* The navbar is fixed, so in-page anchors have to stop short of it or the
      section heading lands underneath the bar. */
   [id] {
-    scroll-margin-top: 7rem;
+    scroll-margin-top: 4.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    [id] {
+      scroll-margin-top: 5.5rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+  }
+
+  @media (min-width: 96rem) {
+    [id] {
+      scroll-margin-top: 7rem;
+    }
   }
 }
 

@@ -42,7 +42,7 @@ export const Footer = () => {
         </a>
       </div>
 
-      <div className={`pt-6 text-center text-xs opacity-80 md:text-sm`}>
+      <div className={`pt-6 text-center text-sm opacity-80 md:text-base`}>
         <div>{"© 2026 MRC Dyno."}</div>
         <div className={`pt-1`}>
           {"Proudly powered by "}

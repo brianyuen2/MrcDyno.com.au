@@ -24,6 +24,7 @@ export const Navbar = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const lastScrollY = useRef(0);
+  const holdVisibleUntil = useRef(0);
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -37,6 +38,11 @@ export const Navbar = () => {
       if (Math.abs(delta) < 6) return;
 
       lastScrollY.current = scrollY;
+
+      /* A nav click scrolls the page down, which would otherwise read as
+         "user is scrolling away" and hide the bar mid jump. */
+      if (Date.now() < holdVisibleUntil.current) return;
+
       setIsHidden(delta > 0 && scrollY > 80);
     };
 
@@ -46,8 +52,19 @@ export const Navbar = () => {
 
   const isVisible = !isHidden || isOpen;
 
+  const holdVisible = () => {
+    holdVisibleUntil.current = Date.now() + 1200;
+    setIsHidden(false);
+  };
+
+  const onLinkClick = () => {
+    holdVisible();
+    setIsOpen(false);
+  };
+
   const scrollToTop = (event: React.MouseEvent) => {
     event.preventDefault();
+    holdVisible();
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -82,6 +99,7 @@ export const Navbar = () => {
             <li key={href}>
               <a
                 href={href}
+                onClick={onLinkClick}
                 className={`${linkBase} text-sm 2xl:text-base font-medium ${
                   cta ? ctaFill : plainFill
                 }`}
@@ -115,7 +133,7 @@ export const Navbar = () => {
             <li key={href}>
               <a
                 href={href}
-                onClick={() => setIsOpen(false)}
+                onClick={onLinkClick}
                 className={`${linkBase} text-base text-center my-1 ${
                   cta ? ctaFill : plainFill
                 }`}
