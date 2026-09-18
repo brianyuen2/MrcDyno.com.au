@@ -47,10 +47,12 @@ export const Footer = () => {
         <div className={`pt-1`}>
           {"Proudly powered by "}
           <a
-            href={"mailto:brianyuen2@gmail.com"}
+            href={"https://brianyuen.io"}
+            target={"_blank"}
+            rel={"noreferrer"}
             className={`underline underline-offset-4 transition-colors duration-200 hover:text-accent-light`}
           >
-            {"brianyuen2@gmail.com"}
+            {"brianyuen.io"}
           </a>
         </div>
       </div>
