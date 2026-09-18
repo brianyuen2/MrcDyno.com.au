@@ -46,8 +46,22 @@ export const Navbar = () => {
       setIsHidden(delta > 0 && scrollY > 80);
     };
 
+    /* Any in-page anchor scrolls the document — the hero's "Learn more" as much
+       as the nav links — so the bar has to hold visible for those too. */
+    const onAnchorClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target?.closest?.('a[href^="#"]')) return;
+
+      holdVisibleUntil.current = Date.now() + 1200;
+      setIsHidden(false);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    document.addEventListener("click", onAnchorClick);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("click", onAnchorClick);
+    };
   }, []);
 
   const isVisible = !isHidden || isOpen;
