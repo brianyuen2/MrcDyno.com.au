@@ -104,7 +104,7 @@ const StripArrow = (props: { side: "left" | "right"; onClick: () => void }) => (
       props.side === "left" ? "left-1" : "right-1"
     }
                 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full
-                bg-black/60 text-white backdrop-blur
+                bg-black/60 text-white
                 transition-colors duration-200 hover:bg-black/80`}
   >
     <svg

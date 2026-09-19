@@ -73,10 +73,10 @@ const ArrowButton = (props: {
     className={`absolute top-1/2 -translate-y-1/2 ${
       props.side === "left" ? "left-2 md:left-4" : "right-2 md:right-4"
     }
-                flex h-9 w-9 cursor-pointer items-center justify-center rounded-full
-                bg-black/40 text-white backdrop-blur
+                flex h-14 w-14 cursor-pointer items-center justify-center rounded-full
+                bg-black/40 text-white
                 transition-colors duration-200 hover:bg-black/70
-                md:h-11 md:w-11`}
+                md:h-20 md:w-20`}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

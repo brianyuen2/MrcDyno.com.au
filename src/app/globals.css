@@ -4,29 +4,35 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Height of the fixed navbar at each breakpoint: its logo height plus the bar's
+   vertical padding. Anchors offset by this so a section heading does not land
+   underneath the bar. If the navbar's logo sizing or py-* changes, change these
+   to match — they are the only place the height is written down. */
+:root {
+  --nav-h: 4.5rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --nav-h: 5.5rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --nav-h: 6rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  :root {
+    --nav-h: 7rem;
+  }
+}
+
 @layer base {
-  /* The navbar is fixed, so in-page anchors have to stop short of it or the
-     section heading lands underneath the bar. */
   [id] {
-    scroll-margin-top: 4.5rem;
-  }
-
-  @media (min-width: 48rem) {
-    [id] {
-      scroll-margin-top: 5.5rem;
-    }
-  }
-
-  @media (min-width: 80rem) {
-    [id] {
-      scroll-margin-top: 6rem;
-    }
-  }
-
-  @media (min-width: 96rem) {
-    [id] {
-      scroll-margin-top: 7rem;
-    }
+    scroll-margin-top: var(--nav-h);
   }
 }
 

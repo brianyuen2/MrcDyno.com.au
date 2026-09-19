@@ -1,4 +1,5 @@
 import React from "react";
+import { Section } from "@/app/components/section";
 
 const PHONE = "(02) 9634 5399";
 const PHONE_HREF = "tel:+61296345399";
@@ -21,10 +22,7 @@ const OPENING_HOURS = [
 ];
 
 export const Contact = () => (
-  <div
-    id={"contact"}
-    className="mx-auto max-w-7xl px-4 pt-8 pb-6 font-sans sm:px-7 lg:pt-12 lg:pb-12"
-  >
+  <Section id="contact">
     <div className="rounded-2xl border border-white/10 bg-muted px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
       <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
         {"Contact Us"}
@@ -91,7 +89,7 @@ export const Contact = () => (
         </div>
       </div>
     </div>
-  </div>
+  </Section>
 );
 
 const Detail = (props: { label: string; children: React.ReactNode }) => (

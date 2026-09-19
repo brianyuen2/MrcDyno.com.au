@@ -1,4 +1,5 @@
 import React from "react";
+import { Section } from "@/app/components/section";
 import { GalleryCarousel } from "@/app/components/image-carousel";
 import classic from "./assets/classic.jpg";
 import classic2 from "./assets/classic2.jpg";
@@ -41,13 +42,7 @@ const IMAGES = [
 ];
 
 export const Restoration = () => (
-  <div
-    id={"restoration"}
-    className="mx-auto max-w-7xl px-4 pt-8 pb-6 font-sans sm:px-7 lg:pt-12 lg:pb-12"
-  >
-    <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
-      {"Restoration"}
-    </h2>
+  <Section id="restoration" title="Restoration">
 
     <div className="mx-auto mt-6 flex max-w-3xl flex-col gap-4 text-center text-base md:mt-8 md:gap-6 md:text-xl">
       {PARAGRAPHS.map((paragraph) => (
@@ -61,5 +56,5 @@ export const Restoration = () => (
       frameClassName="aspect-[16/9]"
       sizes="(min-width: 1280px) 1280px, 100vw"
     />
-  </div>
+  </Section>
 );

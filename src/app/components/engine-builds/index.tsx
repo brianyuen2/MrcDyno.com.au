@@ -1,4 +1,5 @@
 import React from "react";
+import { Section } from "@/app/components/section";
 import Image from "next/image";
 import { SectionRow } from "@/app/components/section-row";
 import engine from "./assets/engine.jpg";
@@ -25,13 +26,7 @@ const ROW_TWO = [
 ];
 
 export const EngineBuilds = () => (
-  <div
-    id={"engine-builds"}
-    className="mx-auto max-w-7xl px-4 pt-8 pb-6 font-sans sm:px-7 lg:pt-12 lg:pb-12"
-  >
-    <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
-      {"Engine Builds"}
-    </h2>
+  <Section id="engine-builds" title="Engine Builds">
 
     <SectionRow
       image={engine2}
@@ -59,5 +54,5 @@ export const EngineBuilds = () => (
         </div>
       ))}
     </div>
-  </div>
+  </Section>
 );

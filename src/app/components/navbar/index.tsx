@@ -81,6 +81,8 @@ export const Navbar = () => {
     holdVisible();
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
+    /* Drop any section hash left in the address bar so home reads as "/". */
+    window.history.replaceState(null, "", window.location.pathname);
   };
 
   return (

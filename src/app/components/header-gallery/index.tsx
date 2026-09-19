@@ -5,8 +5,8 @@ import { Gallery } from "@/app/components/header-gallery/gallery";
 
 const slides = [
   {
-    heading: "Performance Specialists",
-    body: "From dyno tuning to part installs, let us improve your car's performance.",
+    heading: "MRC Dyno",
+    body: "Performance specialists, engine builds, and restoration in Sydney.",
   },
   {
     heading: "Vehicle Restoration",

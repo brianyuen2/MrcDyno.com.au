@@ -19,7 +19,7 @@ export const HeroCarousel = (props: {
 }) => {
   const {
     images,
-    autoPlayInterval = 4000,
+    autoPlayInterval = 4500,
     className,
     frameClassName = "aspect-[16/9]",
     overlay,
@@ -33,19 +33,6 @@ export const HeroCarousel = (props: {
 
   return (
     <div className={`relative ${className ?? ""}`}>
-      <div className="hidden">
-        {images.map(({ src }, index) => (
-          <Image
-            key={`preload-${index}`}
-            src={src}
-            alt=""
-            aria-hidden="true"
-            quality={isMobile ? 50 : 85}
-            loading="eager"
-          />
-        ))}
-      </div>
-
       <div className={`relative w-full overflow-hidden ${frameClassName}`}>
         <Image
           src={images[currentIndex].src}

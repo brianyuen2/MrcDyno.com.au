@@ -1,5 +1,7 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import { Section } from "@/app/components/section";
+import { SectionRow } from "@/app/components/section-row";
 import gtr from "./assets/gtr.jpg";
 import dyno from "./assets/dyno2.jpg";
 import parts from "./assets/parts.jpg";
@@ -72,15 +74,9 @@ const BRANDS = [
 ];
 
 export const Performance = () => (
-  <div
-    id={"performance"}
-    className="mx-auto max-w-7xl px-4 pt-8 pb-6 font-sans sm:px-7 lg:pt-12 lg:pb-12"
-  >
-    <h2 className="text-center text-2xl font-bold lg:text-5xl xl:text-6xl">
-      {"Performance"}
-    </h2>
+  <Section id="performance" title="Performance">
 
-    <Row
+    <SectionRow
       title="At MRC Dyno we know performance."
       titleAs="h2"
       image={gtr}
@@ -88,7 +84,7 @@ export const Performance = () => (
       paragraphs={PARAGRAPHS}
     />
 
-    <Row
+    <SectionRow
       title="Dyno Tuning"
       image={dyno}
       alt="A white Nissan Silvia S15 strapped to the dyno at MRC Dyno, cooling fan in front"
@@ -96,7 +92,7 @@ export const Performance = () => (
       imageFirst
     />
 
-    <Row
+    <SectionRow
       title="Performance Upgrades"
       image={parts}
       alt="A Mantic performance clutch kit and flywheel ready to be fitted at MRC Dyno"
@@ -120,59 +116,6 @@ export const Performance = () => (
         </li>
       ))}
     </ul>
-  </div>
+  </Section>
 );
 
-const Row = (props: {
-  title?: string;
-  titleAs?: "h2" | "h3";
-  image: StaticImageData;
-  alt: string;
-  paragraphs: string[];
-  imageFirst?: boolean;
-  noTint?: boolean;
-}) => {
-  const {
-    title,
-    titleAs = "h3",
-    image,
-    alt,
-    paragraphs,
-    imageFirst,
-    noTint,
-  } = props;
-  const Heading = titleAs;
-
-  return (
-    <div className="mt-8 grid items-center gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-12">
-      <div className={imageFirst ? "lg:order-2" : undefined}>
-        {title && (
-          <Heading className="pb-3 text-xl font-bold md:pb-5 md:text-3xl">
-            {title}
-          </Heading>
-        )}
-        <div className="flex flex-col gap-4 text-base md:gap-6 md:text-xl">
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </div>
-
-      <div
-        className={`relative aspect-[4/3] w-full overflow-hidden rounded-2xl ${
-          imageFirst ? "lg:order-1" : ""
-        }`}
-      >
-        <Image
-          src={image}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          placeholder="blur"
-          className="object-cover"
-        />
-        {!noTint && <div className="absolute inset-0 bg-black/15" />}
-      </div>
-    </div>
-  );
-};
