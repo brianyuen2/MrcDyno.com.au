@@ -31,15 +31,25 @@ export const ThumbnailStrip = (props: {
   }, [syncArrows, images.length]);
 
   /* Keep the active thumbnail in view when the main image changes, otherwise
-     arrow navigation can leave the highlighted thumb off screen. */
+     arrow navigation can leave the highlighted thumb off screen. Scrolling the
+     strip itself, rather than scrollIntoView, keeps this off the page scroll:
+     scrollIntoView walks every scrollable ancestor, so on mount it dragged the
+     whole page down to the gallery. */
   useEffect(() => {
     const strip = stripRef.current;
     const active = strip?.children[currentIndex] as HTMLElement | undefined;
-    active?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    });
+    if (!strip || !active) return;
+
+    const stripBox = strip.getBoundingClientRect();
+    const activeBox = active.getBoundingClientRect();
+    const delta =
+      activeBox.left < stripBox.left
+        ? activeBox.left - stripBox.left
+        : activeBox.right > stripBox.right
+          ? activeBox.right - stripBox.right
+          : 0;
+
+    if (delta) strip.scrollBy({ left: delta, behavior: "smooth" });
   }, [currentIndex]);
 
   const scrollByPage = (direction: -1 | 1) => {
