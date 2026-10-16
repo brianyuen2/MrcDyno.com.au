@@ -3,7 +3,7 @@ import { Section } from "@/app/components/section";
 
 const PHONE = "(02) 9634 5399";
 const PHONE_HREF = "tel:+61296345399";
-const EMAIL = "mrcdyno@iinet.net.au";
+const EMAIL = "sales@mrcdyno.com.au";
 const ADDRESS_LINES = ["Unit 1, 20 Tucks Rd", "Seven Hills NSW 2147"];
 
 const MAP_EMBED =
